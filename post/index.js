@@ -26,13 +26,13 @@ app.post('/posts', (req, res) => {
     posts.push({id, content});
     // res.status(201);
     axios.post('http://localhost:8085/events', {
-        type: 'Post',
-        data: {
-            id: id,
-            content: content
+        'type': "Post",
+        'data': {
+            'id': id,
+            'content': content
         }
     });
-    res.send(posts.filter(p => p['id'] == id ));
+    res.send(posts.filter(post => post['id'] == id));
 });
 
 app.post('/events', (req, res) => {

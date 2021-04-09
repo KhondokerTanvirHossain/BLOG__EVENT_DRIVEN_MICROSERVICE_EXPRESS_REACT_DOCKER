@@ -2,21 +2,15 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function App({postId}) {
-  const [comments, setComments] = useState('');
-  const fetchComments = async(event) => {
-    const res = await axios.get(`http://localhost:8081/post/${postId}/comments`);
-    setComments(res.data);
+function App({commentList}) {
+  console.log(commentList);
+  if (commentList == undefined) {
+    commentList = [];
   }
-
-  useEffect(() => {
-    fetchComments();
-  }, []);
-
-  const renderdComments = Object.values(comments).map(comment => {
+  const renderdComments = commentList.map(comment => {
     return (
       <li  key="comment.id">
-         {comment.comment}
+        {comment.comment}
       </li>
     );
   });

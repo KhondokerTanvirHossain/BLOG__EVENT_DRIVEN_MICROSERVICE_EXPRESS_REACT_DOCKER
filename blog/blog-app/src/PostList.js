@@ -7,7 +7,7 @@ import axios from 'axios';
 function App() {
   const [posts, setPost] = useState('');
   const fetchPosts = async(event) => {
-    const res = await axios.get('http://localhost:8080/posts');
+    const res = await axios.get('http://localhost:8082/posts');
     setPost(res.data);
   }
 
@@ -20,7 +20,7 @@ function App() {
       <div className="card" key="post.id" style={{width: '30%', marginBottom: '20px'}}>
         <div className="card-body">
           <h3> {post.content} </h3>
-          <CommentList postId={post.id}/>
+          <CommentList commentList={ post['comments'] }/>
           <CommentCreate postId={post.id}/>
         </div>
       </div>

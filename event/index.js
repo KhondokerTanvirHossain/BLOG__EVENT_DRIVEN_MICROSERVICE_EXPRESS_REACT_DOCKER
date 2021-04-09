@@ -13,12 +13,12 @@ app.post('/events', (req, res) => {
     const event = req.body;
     
     axios.post('http://localhost:8080/events', event);
+    axios.post('http://localhost:8082/events', event);
     axios.post('http://localhost:8081/events', event);
-    // axios.post('http://localhost:8082/events', event);
 
-    console.log('EVENT ARRIVED :' + event.type);
+    console.log('EVENT ARRIVED :' + event);
 
-    res.send(event);
+    res.send({event});
 });
 
 

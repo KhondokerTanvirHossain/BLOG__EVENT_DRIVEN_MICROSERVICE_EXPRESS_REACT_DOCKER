@@ -28,11 +28,10 @@ app.post('/post/:id/comment', (req, res) => {
     comments.push({ id, postId, comment});
 
     axios.post('http://localhost:8085/events', {
-        type: 'Comment',
-        data: {
-            id: id,
-            postId: postId,
-            comment: comment
+        'type': 'Comment',
+        'data': {
+            'id': postId,
+            'comment': comment
         }
     });
     
