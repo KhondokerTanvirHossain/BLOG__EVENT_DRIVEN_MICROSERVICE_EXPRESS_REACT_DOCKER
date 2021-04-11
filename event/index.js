@@ -9,9 +9,17 @@ app.use(express.json());
 
 app.use(cors());
 
+const events = [];
+
+app.get('/events', (req, res) => {
+    res.send(events);
+});
+
 app.post('/events', (req, res) => {
     const event = req.body;
     
+    events.push(event);
+
     axios.post('http://localhost:8080/events', event);
     axios.post('http://localhost:8081/events', event);
     axios.post('http://localhost:8082/events', event);
