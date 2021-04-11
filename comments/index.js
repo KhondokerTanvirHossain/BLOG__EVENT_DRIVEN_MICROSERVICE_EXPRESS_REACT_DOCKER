@@ -25,13 +25,15 @@ app.post('/post/:id/comment', (req, res) => {
     const id = uuidv4();
     const postId = req.params.id;
     const comment = req.body.comment;
-    comments.push({ id, postId, comment});
+    const status = "pending";
+    comments.push({ id, postId, comment, status});
 
     axios.post('http://localhost:8085/events', {
         'type': 'Comment',
         'data': {
             'id': postId,
-            'comment': comment
+            'comment': comment,
+            'status': status
         }
     });
     
@@ -41,6 +43,8 @@ app.post('/post/:id/comment', (req, res) => {
 app.post('/events', (req, res) => {
 
     console.log('Event Received:' + req.body.type);
+
+    if (req.body.type == '')
 
     res.send({});
 });

@@ -25,12 +25,21 @@ app.post('/events', (req, res) => {
     } else if (req.body.type == 'Comment') {
         const id = uuidv4();
         const comment = req.body.data.comment;
+        const status = req.body.data.status;
         post = posts[req.body.data.id];
         console.log(post);  
         if (!("comments" in post)) {
             post["comments"] = [];
         }
-        post.comments.push({id, comment});
+        post.comments.push({id, comment, status});
+    }
+
+    else if (req.body.type == 'Approval') {
+        post = posts[req.body.data.id];
+        console.log(post);
+        post.comments.filter(c => {
+            c.status = req.body.data.status;
+        });
     }
     res.send({});
 });

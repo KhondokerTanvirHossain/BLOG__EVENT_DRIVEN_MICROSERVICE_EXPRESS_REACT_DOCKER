@@ -10,7 +10,7 @@ function App({commentList}) {
   const renderdComments = commentList.map(comment => {
     return (
       <li  key="comment.id">
-        {comment.comment}
+        {comment.comment} ({comment.status})
       </li>
     );
   });
